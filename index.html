@@ -691,7 +691,7 @@
               <div class="price"><strong id="price">15</strong><span>د.أ</span></div>
               <div class="status" id="status">إربد → عمان · سيارة كاملة</div>
             </div>
-            <button class="btn btn-primary" id="confirm" type="button">تأكيد عبر واتساب</button>
+            <button class="btn btn-primary" id="confirm" type="button">الانتقال إلى الحجز</button>
           </div>
         </div>
       </section>
@@ -929,6 +929,13 @@
         window.open(`https://wa.me/${waNumber}?text=${message}`, "_blank", "noopener,noreferrer");
       }
 
+      function scrollToBooking() {
+        const bookingSection = document.getElementById("booking");
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
       rideButtons.forEach((button) => {
         button.addEventListener("click", () => setRide(button.dataset.ride));
       });
@@ -936,8 +943,7 @@
       [fromEl, toEl, dateEl].forEach((el) => el.addEventListener("change", updateCalculator));
 
       confirmEl.addEventListener("click", () => {
-        if (confirmEl.disabled) return;
-        openWhatsApp();
+        scrollToBooking();
       });
 
       floatingWa.addEventListener("click", openWhatsApp);
